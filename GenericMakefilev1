@@ -6,15 +6,14 @@
 OBJECTS = $(C_SOURCES:.c=.o) $(S_SOURCES:.S=.o)
 
 ################### File Locations #####################
-include $(FOUNDATION)/filePath
 
 # Compiler/Assembler/Linker Paths
 
-CC=		$(PATH)arm-none-eabi-gcc
-OD =	$(PATH)arm-none-eabi-objdump
-NM =	$(PATH)arm-none-eabi-nm
-AS =	$(PATH)arm-none-eabi-as
-SZ =	$(PATH)arm-none-eabi-size
+CC=		$(TOOLS)arm-none-eabi-gcc
+OD =	$(TOOLS)arm-none-eabi-objdump
+NM =	$(TOOLS)arm-none-eabi-nm
+AS =	$(TOOLS)arm-none-eabi-as
+SZ =	$(TOOLS)arm-none-eabi-size
 
 OBJDIR = Objects2
 INCLUDES = -I./
@@ -35,7 +34,7 @@ $(NAME).elf: $(OBJECTS)
 	@ echo "Link:"
 	$(CC) $(LDFLAGS)  $^ -o $@
 	/bin/rm -f *.o
-	#$(OD) $(ODFLAGS) $@ > $(NAME).lst
+	$(OD) $(ODFLAGS) $@ > $(NAME).lst
 	$(SZ) --format=berkeley $@
 	
 .S.o:
