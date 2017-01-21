@@ -111,7 +111,7 @@ Infinite_Loop7:
 * (Liam Goudge) These are vectors for the STM32F100C8
 ******************************************************************************/    
 
-.section  .vectors
+.section  .isr_vector
 
 Vectors:
 .word __stack_base__
@@ -141,7 +141,7 @@ Vectors:
 *
 * This is the full set of handlers for the full set of STM32F100C8 exception vectors (LG)
 *******************************************************************************/
- /*
+
   .weak  NMI_Handler
   .thumb_set NMI_Handler,Default_Handler
   
@@ -171,7 +171,7 @@ Vectors:
 
   .weak  WWDG_IRQHandler
   .thumb_set WWDG_IRQHandler,Default_Handler
-*/
+
 
 .end
 

@@ -19,7 +19,7 @@ SECTIONS {
 
 	.text :
 	{
-		*(.vectors)			/* Vector table */
+		*(.isr_vector)			/* Vector table */
 		*(.text*)				/* Program code */
 		*(.rodata*)
 	} >FLASH

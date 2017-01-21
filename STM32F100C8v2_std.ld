@@ -2,6 +2,8 @@
 
 ENTRY(Reset_Handler)
 
+StackSize = 1000;
+HeapSize = 5000;
 __HeapSize = 0x0100 ;
 
 MEMORY
@@ -15,6 +17,8 @@ MEMORY
 PROVIDE(__stack = ORIGIN(STACK) );  			/* __stack required by crt0.o otherwise it assumes 0x8000 */
 
 SECTIONS {
+
+	. = ORIGIN(FLASH);
 
 	.text :
 	{
@@ -42,13 +46,18 @@ SECTIONS {
 		__bss_end__ = .;
 	} >SRAM
 	
+	end = . ; 					/* Required for _sbrk */	
 	
 	.heap :
 	{
 		__HeapBase = .;				/* required for _sbrk stdlib */
-		__HeapLimit = __HeapBase + __HeapSize ;
+		/* __HeapLimit = __HeapBase + __HeapSize ; */
+		__HeapLimit = __HeapBase + HeapSize ;
 		*(.heap*)
 	} > SRAM
+
+		
+	__stack_base__ = ORIGIN(SRAM) + LENGTH(SRAM);
 
 
 }
