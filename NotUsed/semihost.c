@@ -1,15 +1,6 @@
-//Stub'bed functions required by the C standard and nano libraries for implementing semihosting
-// November 2016
-extern void SemiHost(char* a);
-
-// The nano library already defines _close. Without the ifdef, a duplicate error occurs
-#ifndef NANO
-int _close(int fd)
-{
-return(-1);
-}
-#endif
-
+/* This project works 30th October 2016 */
+/* 2 branches on GIT. This is the simple one that is cut down. The other has  C startup code */
+extern	void SemiHost(char* a);
 
 int _write(int file, char *ptr, int len)
 
@@ -45,6 +36,12 @@ int _open_r(const char *name, int mode)
 {
 return(-1);
 }
+/*
+int _close(int fd)
+{
+return(-1);
+}
+*/
 
 struct stat
 {
@@ -58,8 +55,8 @@ int _fstat(int file, struct stat *st) {
 char *heap_end = 0;
 
 void * _sbrk(int incr) {
- extern char __HeapBase; // Defined by the link script
- extern char __HeapLimit; // Defined by the link script
+ extern char __HeapBase; // Defined by the linker
+ extern char __HeapLimit; // Defined by the linker
  char *prev_heap_end;
 
  if (heap_end == 0) {
@@ -76,7 +73,13 @@ void * _sbrk(int incr) {
  return (void *) prev_heap_end;
  }
 
+
 void __end__ (void)
+{
+	while(1);
+}
+
+void end (void)
 {
 	while(1);
 }

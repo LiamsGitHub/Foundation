@@ -1,5 +1,5 @@
-/* File: semihost.S
- * Purpose: semihosting for debug purposes */
+// Function to drive low level byte writes over the ARM debug comms channel
+// November 2016
 
 	.syntax	unified
 	.arch	armv7-m

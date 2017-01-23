@@ -1,8 +1,8 @@
  /******************************************************************************
  *	Startup for STM32F100C8
- *	Based on code from STDiscovery adjusted to target specifically STM32F100C8 with complete set of vectors
- *  Targets Eclipse Kepler with ARM GNU tools gcc-arm-none-eabi-4_8-2013q4
- * 	Did not bother to set up NVIC
+ *	Based on code from STDiscovery adjusted to target specifically STM32F100C8
+ *  Targets Eclipse Mars with ARM GNU tools gcc-arm-none-eabi-4_8-2013q4
+ *  November 2016
  *
  *******************************************************************************/
     
@@ -48,9 +48,12 @@ LoopFillZerobss:
   ldr   r3, = __bss_end__
   cmp   r2, r3
   bcc   FillZerobss
-
+/*
+#ifdef CRT
   bl  SystemInit   						// Call the clock system intitialization function.
   bl _start								// Call crt0
+#endif
+*/
   bl    main 							// Call application entry point
   bx    lr
 
@@ -63,7 +66,7 @@ Infinite_Loop:
 
 
 /******************************************************************************
-* Complete vector table for STM32F100C8.
+* Vector table for STM32F100C8.
 * Must be placed at physical address 0x0000.0000.
 * 
 * (Liam Goudge) These are vectors for the STM32F100C8
@@ -72,7 +75,7 @@ Infinite_Loop:
 .section  .isr_vector
 
 Vectors:
-.word __stack_base__
+.word __stack
 .word Reset_Handler
 .word NMI_Handler
 .word HardFault_Handler

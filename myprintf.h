@@ -2,6 +2,7 @@ extern	void SemiHost(char* a); // use this for semihost write
 
 // myprintf is a much simplied printf for embedded for use with semihosting
 // It is limited to printing a text message and then an integer over the semihost channel
+// Liam Goudge November 2016
 
 void myprintf(char* text, int value) {
 
