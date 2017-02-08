@@ -1,4 +1,4 @@
-/* Memory configuration for STM32F100C8 */
+/* Memory configuration for STM32F100C8 and STM32F103C8 */
 
 ENTRY(Reset_Handler)
 
@@ -21,6 +21,8 @@ SECTIONS {
 	.text :
 	{
 		*(.isr_vector)								/* ISR Vector table. Used by startup asm */
+		*(.Default_Handler*)
+		*(.Reset_Handler*)
 		*(.text*)									/* Program */
 		*(.rodata*)
 	} >FLASH
