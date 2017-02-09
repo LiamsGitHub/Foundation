@@ -75,6 +75,8 @@ Infinite_Loop:
 .section  .isr_vector
 
 Vectors:
+
+// Common to all Cortex M3 based MCUs
 .word   __stack						/* stack top address */
 .word   Reset_Handler				/* Reset. First code address after reset */
 .word   Default_Handler        		/* NMI_Handler */
@@ -91,6 +93,8 @@ Vectors:
 .word   Default_Handler        		/* RESERVED */
 .word   Default_Handler        		/* PendSV */
 .word   Default_Handler        		/* SysTick */
+
+// Specific to STM32F100
 .word   Default_Handler        		/* WWDG */
 .word   Default_Handler        		/* PVD */
 .word   Default_Handler        		/* Tamper Stamp */

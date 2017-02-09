@@ -1,6 +1,6 @@
 /* Memory configuration for STM32F100C8 and STM32F103C8 */
 
-ENTRY(Reset_Handler)
+ENTRY(main)
 
 MEMORY
 {
@@ -26,7 +26,8 @@ SECTIONS {
 		*(.text*)									/* Program */
 		*(.rodata*)
 	} >FLASH
-		
+	
+		__etext = .;
 
 	.data :
 	{
