@@ -20,23 +20,24 @@ SECTIONS {
 
 	.text :
 	{
-		*(.isr_vector)								/* ISR Vector table. Used by startup asm */
-		*(.Default_Handler*)
-		*(.Reset_Handler*)
-		*(.text*)									/* Program */
+		*(.isr_vectors)								/* ISR Vector table. Used by startup asm */
+		*(.text*)
 		*(.rodata*)
 	} >FLASH
 	
-		__etext = .;
-
+	__FLASHdata_start = .;
+	
+	
+	. = ORIGIN(SRAM);
+	
 	.data :
 	{
-		__data_start__ = .;							/* Starting point of SRAM block where data is to be copied. Used by startup asm */
+		__RAMdata_start = .;
 		*(.data*)
-		__data_end__ = .;							/* Used by startup asm */
+		__RAMdata_end = .;
 	} >SRAM AT >FLASH
-
-    _start_data_flash = LOADADDR(.data);			/* Starting location in FLASH of data to be copied */
+        
+	__FLASHdata_start = LOADADDR(.data); 
 
 	.bss :
 	{
@@ -44,6 +45,7 @@ SECTIONS {
 		*(.bss*)
 		__bss_end__ = .;							/* Used by startup asm */
 	} >SRAM
+
 	
 	end = . ; 										/* Required for _sbrk in semihost.c*/	
 	
