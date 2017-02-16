@@ -2,16 +2,15 @@
 // Commented ones are copied from 100.h but not verified
 
 // Reset and Clock Control (RCC)
-
 #define RCC_CR            (*((volatile unsigned long *) 0x40021000)) // Clock Control register. Offset=0x0
 #define RCC_CFGR          (*((volatile unsigned long *) 0x40021004)) // Clock configuration register. Offset=0x4
 #define RCC_APB1ENR       (*((volatile unsigned long *) 0x4002101C)) // APB1 peripheral clock enable register. Offset=0x1C
 #define RCC_APB2ENR       (*((volatile unsigned long *) 0x40021018)) // APB2 peripheral clock enable register. Offset=0x18
 
-// GPIO Port Registers
 // GPIO Port A
 #define GPIOA_CRL         (*((volatile unsigned long *) 0x40010800)) // GPIO port A. Port configuration register low. Offset=0x0
 #define GPIOA_CRH         (*((volatile unsigned long *) 0x40010804)) // GPIO port A. Port configuration register High. Offset=0x4
+#define GPIOA_ODR		  (*((volatile unsigned long *) 0x4001080C)) // GPIO port A. Output data register also used to set pullup/down. Offset = 0xC
 #define GPIOA_BSRR        (*((volatile unsigned long *) 0x40010810)) // GPIO port A. Bit set/reset register. Offset = 0x10
 
 // GPIO Port C
@@ -26,6 +25,14 @@
 #define USART1_CR1        (*((volatile unsigned long *) 0x4001380C)) // USART1. Control register 1. Offset=0xC
 #define USART1_CR2        (*((volatile unsigned long *) 0x40013810)) // USART1. Control register 2. Offset=0x10
 #define USART1_CR3        (*((volatile unsigned long *) 0x40013814)) // USART1. Control register 3. Offset=0x14
+
+// SPI1 Registers
+#define SPI_CR1         (*((volatile unsigned long *) 0x40013000)) // SPI1 Control register 1. Offset=0x0
+#define SPI_CR2         (*((volatile unsigned long *) 0x40013004)) // SPI1 Control register 2. Offset=0x4
+#define SPI_SR			(*((volatile unsigned long *) 0x40013008)) // SPI Status register. Offset=0x8
+#define SPI_DR			(*((volatile unsigned long *) 0x4001300c)) // SPI Data register. Offset=0xC
+#define SPI_I2SCFGR		(*((volatile unsigned long *) 0x4001301c)) // SPI Config register. Offset=0x1C
+#define SPI_I2SPR		(*((volatile unsigned long *) 0x40013020)) // SPI prescaler register. Offset=0x20
 
 
 // ADC1 Registers
